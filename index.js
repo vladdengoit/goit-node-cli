@@ -1,25 +1,25 @@
 import fs from "fs/promises";
-import { listContacts ,getContactById, removeContact,addContact} from "../goit-node-cli/contacts.js";
+import { list ,get, remove,add} from "../goit-node-cli/contacts.js";
 import { program } from "commander";
 
 
 
 const invokeAction =async({action, id, name, email, phone})=>{
   switch (action) {
-    case listContacts:
-    const getAllContacts = await listContacts();
+    case "list":
+    const getAllContacts = await list();
     return console.log(getAllContacts);
 
-    case getContactById:
-    const getOneContact = await getContactById(id);
+    case "get":
+    const getOneContact = await get(id);
     return console.log(getOneContact);
 
-    case removeContact:
-      const remOneContact = await removeContact(id);
+    case "remove":
+      const remOneContact = await remove(id);
       return console.log(remOneContact);
 
-      case addContact:
-        const addOneContact = await addContact({name, email, phone});
+      case "add":
+        const addOneContact = await add({name, email, phone});
         return console.log(addOneContact);
 
     default:

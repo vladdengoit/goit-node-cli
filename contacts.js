@@ -4,19 +4,19 @@ import { nanoid } from 'nanoid'
 
 const contactsPath  = path.resolve("db","contacts.json")
 
-export async function listContacts() {
+export async function list() {
   const data = await fs.readFile(contactsPath, "utf-8")
   return JSON.parse(data)
 }
 
-export async function getContactById(contactId) {
-  const listAllContacts = await listContacts()
+export async function get(contactId) {
+  const listAllContacts = await list()
   const contactsById = listAllContacts.find(el=> el.id === contactId)
   return contactsById || null ;
 }
 
-export async function removeContact(contactId) {
-  const listAllContacts = await listContacts()
+export async function remove(contactId) {
+  const listAllContacts = await list()
   const indexforDelete = listAllContacts.findIndex( el => el.id===contactId)
   console.log(indexforDelete);
 if(indexforDelete === -1){
@@ -28,8 +28,8 @@ return result
   
 }
 
- export async function addContact(data) {
-  const listAllContacts = await listContacts()
+ export async function add(data) {
+  const listAllContacts = await list()
   const newContact = {
     id:nanoid(),
     ...data
