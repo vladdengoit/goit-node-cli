@@ -36,6 +36,6 @@ program
 program.parse();
 
 const resultsOptions = program.opts();
-console.log(resultsOptions);
+// console.log(resultsOptions);
 
 invokeAction(resultsOptions)
